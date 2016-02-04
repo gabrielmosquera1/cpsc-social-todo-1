@@ -54,8 +54,9 @@ function isLoggedIn(req, res, next){
   }
 }
 
+
 // Middleware that loads a users tasks if they are logged in.
-function loadUserTasks(req, res, next) {
+function loadUserTasks(req, res, next){
   if(!res.locals.currentUser){
     return next();
   }
@@ -66,6 +67,15 @@ function loadUserTasks(req, res, next) {
       if(!err){
         res.locals.tasks = tasks;
       }
+      var length = tasks.length;
+      // Inputs isOwner field to the task if the user owns it
+      for (var i = 0; i < length; i++){
+        if(String(tasks[i].owner) == String(res.locals.currentUser._id)){
+          tasks[i].isOwner = 1;
+        }else{
+          tasks[i].isOwner = 0;
+        }
+      }
       next();
   });
 }
@@ -74,6 +84,7 @@ function loadUserTasks(req, res, next) {
 app.get('/', loadUserTasks, function (req, res) {
       res.render('index');
 });
+
 
 // Handle submitted form for new users
 app.post('/user/register', function (req, res) {
@@ -114,14 +125,14 @@ app.post('/user/login', function (req, res) {
   Users.findOne({email: req.body.email}, function(err, user){
 
     if(err || !user){
-      res.send('Invalid email address');
+      res.render('index', {errors: 'Invalid email address'});
       return;
     }
 
     // See if the hash of their passwords match
     user.comparePassword(req.body.password, function(err, isMatch){
       if(err || !isMatch){
-        res.send('Invalid password');
+        res.render('index', {errors: "Invalid password"});
       }else{
         req.session.userId = user._id;
         res.redirect('/');
@@ -147,15 +158,51 @@ app.post('/task/create', function(req, res){
   newTask.owner = res.locals.currentUser._id;
   newTask.title = req.body.title;
   newTask.description = req.body.description;
+  newTask.isComplete = false;
   newTask.collaborators = [req.body.collaborator1, req.body.collaborator2, req.body.collaborator3];
   newTask.save(function(err, savedTask){
     if(err || !savedTask){
-      res.send('Error saving task!');
+      res.render('/', {errors: "Error saving task!"});
     }else{
       res.redirect('/');
     }
   });
 });
+
+// Delete task
+app.post('/task/delete', function(req, answ){
+  Tasks.remove({owner: req.body.ownerTask, title: req.body.titleTask}, function(err, res){
+    if(err){
+      res.render('/', {errors: "Could not delete task!"});
+    }else{
+      answ.redirect('/');
+    }
+  });
+});
+
+
+// Mark task as completed
+app.post('/task/complete', function(req, res){
+  var newVal = false;
+  console.log('o original tá ' + typeof req.body.completeTask);
+  console.log('entrou');
+  if(req.body.completeTask === 'false'){
+      newVal = true;
+      console.log('era false!');
+    }else{
+      newVal = false;
+      console.log('era true!');
+    }  
+    console.log('mudou para ' + newVal);
+  Tasks.update({owner: req.body.ownerTask, title: req.body.titleTask}, {$set: {isComplete: newVal}}, function(err, ans){
+    if(err){
+      res.render('/', {errors: "Could not update task!"});
+    }else{
+      res.redirect('/');
+    }
+});
+});
+
 
 // Start the server
 app.listen(process.env.PORT, function () {

@@ -16,12 +16,29 @@
             {{#each tasks}}
                 <li class="tasks-list-item">
                   <span class="task-title">{{this.title}}</span>
-                  <form method="post">
-                    <input type="button" name="delete-task" class="delete-task" value="Delete">
-                  </form>
-                  <form method="post">
-                    <input type="button" name="toggle-task" class="toggle-task" value="Mark complete">
-                  </form>
+                  
+                  {{#if isOwner}}
+                      <form action="/task/delete" method="POST">
+                        <input type="hidden" name="ownerTask" value={{this.owner}}>
+                        <input type="hidden" name="titleTask" value={{this.title}}>
+                        <input type="submit" name="delete-task" class="delete-task" value="Delete">
+                      </form>
+                  {{/if}}
+                  
+                  {{#if isComplete}}
+                     <form action="/task/complete" method="POST">
+                        <input type="hidden" name="ownerTask" value={{this.owner}}>
+                        <input type="hidden" name="titleTask" value={{this.title}}>
+                        <input type="submit" name="toggle-task" class="toggle-task" value="Incompleted!">
+                     </form>
+                  {{else}}
+                     <form action="/task/complete" method="POST">
+                        <input type="hidden" name="ownerTask" value={{this.owner}}>
+                        <input type="hidden" name="titleTask" value={{this.title}}>
+                        <input type="hidden" name="completeTask" value={{this.isComplete}}>
+                        <input type="submit" name="toggle-task" class="toggle-task" ="#f00" value="Completed!">
+                     </form>
+                  {{/if}}
                 </li>
             {{/each}}
             </ul>
