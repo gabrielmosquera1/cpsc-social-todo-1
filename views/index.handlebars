@@ -26,17 +26,19 @@
                   {{/if}}
                   
                   {{#if isComplete}}
-                     <form action="/task/complete" method="POST">
-                        <input type="hidden" name="ownerTask" value={{this.owner}}>
-                        <input type="hidden" name="titleTask" value={{this.title}}>
-                        <input type="submit" name="toggle-task" class="toggle-task" value="Incompleted!">
-                     </form>
+                     <div class="complete-task">
+                        <form action="/task/complete" method="POST">
+                           <input type="hidden" name="ownerTask" value={{this.owner}}>
+                           <input type="hidden" name="titleTask" value={{this.title}}>
+                           <input type="submit" name="toggle-task" class="toggle-task" value="Completed!">
+                        </form>
+                     </div>
                   {{else}}
                      <form action="/task/complete" method="POST">
                         <input type="hidden" name="ownerTask" value={{this.owner}}>
                         <input type="hidden" name="titleTask" value={{this.title}}>
                         <input type="hidden" name="completeTask" value={{this.isComplete}}>
-                        <input type="submit" name="toggle-task" class="toggle-task" ="#f00" value="Completed!">
+                        <input type="submit" name="toggle-task" class="toggle-task" value="Incompleted!">
                      </form>
                   {{/if}}
                 </li>
@@ -63,7 +65,7 @@
     </div>
 
 {{else}}
-<div>
+<div class="login-block">
     <form class="login" action="/user/login" method="POST">
         <label for="email">Email</label>
         <input name="email" id="email" type="text"><br>

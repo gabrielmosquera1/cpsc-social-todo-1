@@ -5,7 +5,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URL);
+// mongoose.connect(process.env.MONGO_URL);
+mongoose.connect(mongodb://heroku_zf6bxnrt:lh1sjf0mbjqc9uokcl5l2qqpjl@ds035740.mongolab.com:35740/heroku_zf6bxnrt);
 var Users = require('./models/users.js');
 var Tasks = require('./models/tasks.js');
 
