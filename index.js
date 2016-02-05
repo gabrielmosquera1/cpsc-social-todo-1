@@ -173,7 +173,7 @@ app.post('/task/create', function(req, res){
 
 // Delete task
 app.post('/task/delete', function(req, answ){
-  Tasks.remove({owner: req.body.ownerTask, _id: req.body.taskId}, function(err, res){
+  Tasks.remove({_id: req.body.taskId}, function(err, res){
     if(err){
       res.render('/', {errors: "Could not delete task!"});
     }else{
@@ -196,7 +196,7 @@ app.post('/task/complete', function(req, res){
       console.log('era true!');
     }  
     console.log('mudou para ' + newVal);
-  Tasks.update({owner: req.body.ownerTask, _id: req.body.taskId}, {isComplete: newVal}, function(err, ans){
+  Tasks.update({_id: req.body.taskId}, {isComplete: newVal}, function(err, ans){
     if(err){
       res.render('/', {errors: "Could not update task!"});
     }else{
