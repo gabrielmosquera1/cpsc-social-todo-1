@@ -16,7 +16,7 @@
             <ul>
             {{#each tasks}}
                 <li class="tasks-list-item task-card" 
-                  <span class="tasks-list-desc task-title" >{{this.title}}</span>
+                  <span class="tasks-list-desc span.task-title" >{{this.title}}</span>
                   
                   {{#if isOwner}}
                       <form action="/task/delete" method="POST">
