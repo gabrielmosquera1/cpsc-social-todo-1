@@ -186,9 +186,9 @@ app.post('/task/delete', function(req, answ){
 // Mark task as completed
 app.post('/task/complete', function(req, res){
   var newVal = false;
-  console.log('o original tá ' + typeof req.body.completeTask);
+  console.log('o original tá ' + req.body.completeTask);
   console.log('entrou');
-  if(req.body._id === 'false'){
+  if(req.body.completeTask == 'false'){
       newVal = true;
       console.log('era false!');
     }else{
@@ -196,7 +196,7 @@ app.post('/task/complete', function(req, res){
       console.log('era true!');
     }  
     console.log('mudou para ' + newVal);
-  Tasks.update({_id: req.body.taskId}, {$set: {isComplete: newVal}}, function(err, ans){
+  Tasks.update({_id: req.body.taskId}, {isComplete: newVal}, function(err, ans){
     if(err){
       res.render('/', {errors: "Could not update task!"});
     }else{
