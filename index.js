@@ -73,9 +73,9 @@ function loadUserTasks(req, res, next){
       // Inputs isOwner field to the task if the user owns it
       for (var i = 0; i < length; i++){
         if(String(tasks[i].owner) == String(res.locals.currentUser._id)){
-          tasks[i]["isOwner"] = true;
+          tasks[i].isOwner = 1;
         }else{
-          tasks[i]["isOwner"] = false;
+          tasks[i].isOwner = 0;
         }
       }
       next();
