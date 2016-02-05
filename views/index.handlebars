@@ -34,7 +34,7 @@
                   {{/if}}
                   
                   {{#if isComplete}}
-                     <div class="complete-task">
+                     <div class="">
                         <form action="/task/complete" method="POST">
                            <input type="hidden" name="ownerTask" value={{this.owner}}>
                            <input type="hidden" name="titleTask" value={{this.title}}>
@@ -45,7 +45,7 @@
                      <form action="/task/complete" method="POST">
                         <input type="hidden" name="ownerTask" value={{this.owner}}>
                         <input type="hidden" name="titleTask" value={{this.title}}>
-                        <input type="hidden" name="completeTask" value={{this.isComplete}}>
+                        <input type="hidden" name="" value={{this.isComplete}}>
                         <input type="submit" name="toggle-task" class="toggle-task" value="Incomplete">
                      </form>
                   {{/if}}
