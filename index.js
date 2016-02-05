@@ -173,7 +173,7 @@ app.post('/task/create', function(req, res){
 
 // Delete task
 app.post('/task/delete', function(req, answ){
-  Tasks.remove({owner: req.body.ownerTask, title: req.body.titleTask}, function(err, res){
+  Tasks.remove({owner: req.body.ownerTask, _id: req.body.taskId}, function(err, res){
     if(err){
       res.render('/', {errors: "Could not delete task!"});
     }else{
@@ -188,7 +188,7 @@ app.post('/task/complete', function(req, res){
   var newVal = false;
   console.log('o original tá ' + typeof req.body.completeTask);
   console.log('entrou');
-  if(req.body.completeTask === 'false'){
+  if(req.body._id === 'false'){
       newVal = true;
       console.log('era false!');
     }else{
@@ -196,7 +196,7 @@ app.post('/task/complete', function(req, res){
       console.log('era true!');
     }  
     console.log('mudou para ' + newVal);
-  Tasks.update({owner: req.body.ownerTask, title: req.body.titleTask}, {isComplete: newVal}, function(err, ans){
+  Tasks.update({owner: req.body.ownerTask, _id: req.body.taskId}, {isComplete: newVal}, function(err, ans){
     if(err){
       res.render('/', {errors: "Could not update task!"});
     }else{

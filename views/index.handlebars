@@ -28,7 +28,7 @@
                   {{#if isOwner}}
                       <form action="/task/delete" method="POST">
                         <input type="hidden" name="ownerTask" value={{this.owner}}>
-                        <input type="hidden" name="titleTask" value={{this.title}}>
+                        <input type="hidden" name="titleId" value={{this._id}}>
                         <input type="submit" name="delete-task" class="delete-task" value="Delete">
                       </form>
                   {{/if}}
@@ -37,15 +37,15 @@
                      <div class="">
                         <form action="/task/complete" method="POST">
                            <input type="hidden" name="ownerTask" value={{this.owner}}>
-                           <input type="hidden" name="titleTask" value={{this.title}}>
+                           <input type="hidden" name="titleId" value={{this._id}}>
                            <input type="submit" name="toggle-task" style="color: blue" class="toggle-task" value="Complete">
                         </form>
                      </div>
                   {{else}}
                      <form action="/task/complete" method="POST">
                         <input type="hidden" name="ownerTask" value={{this.owner}}>
-                        <input type="hidden" name="titleTask" value={{this.title}}>
-                        <input type="hidden" name="" value={{this.isComplete}}>
+                        <input type="hidden" name="titleId" value={{this._id}}>
+                        <input type="hidden" name="completeTask" value={{this.isComplete}}>
                         <input type="submit" name="toggle-task" class="toggle-task" value="Incomplete">
                      </form>
                   {{/if}}
