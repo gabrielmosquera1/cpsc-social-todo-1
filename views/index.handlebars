@@ -1,4 +1,4 @@
-<h1 align="center">Social todo app for cpsc113</h1>
+<h1 align="center">TheTaskManager</h1>
 <br>
 
 {{#if errors}}
@@ -15,7 +15,7 @@
         {{#if tasks}}
             {{!--<ul>--}}
             {{#each tasks}}
-                <li class="task-card" class="tasks-list-item" 
+                <li class="tasks-list-item task-card" 
                   <span class="task-title">{{this.title}}</span>
                   
                   {{#if isOwner}}
@@ -46,7 +46,7 @@
             {{/each}}
             {{!--</ul>--}}
         {{else}}
-            No tasks to show!
+            <h4 align="center">No tasks to show!</h4>
         {{/if}}
     </div>
 
@@ -61,7 +61,7 @@
             <input name="collaborator1" type="text"><br>
             <input name="collaborator2" type="text"><br>
             <input name="collaborator3" type="text"><br>
-            <input type="submit" class="login login-submit" class="create-task-submit">
+            <input type="submit" class="create-task-submit login login-submit">
         </form>
     </div>
 
@@ -71,7 +71,7 @@
    <form action="/user/login" method="POST">
       <input name="email" id="email" type="text" placeholder="Email"><br>
       <input name="password"  id="password" type="text" placeholder="Password"><br>
-      <input type="submit" class="login login-submit" class="log-in-submit">
+      <input type="submit" class="log-in-submit login login-submit">
    </form>
 </div>
 
@@ -88,7 +88,7 @@
       <input name="email" type="text" class="text-input" placeholder="email">
       <input name="password" type="password" class="text-input" placeholder="password">
       <input name="password_confirmation" type="password" class="text-input" placeholder="password confirmation">
-      <input class="login login-submit" class="sign-up-submit" type="submit">
+      <input class="sign-up-submit login login-submit" type="submit">
     </form>
 </div>
 {{/if}}
