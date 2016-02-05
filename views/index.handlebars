@@ -36,7 +36,7 @@
                         <form action="/task/complete" method="POST">
                            <input type="hidden" name="ownerTask" value={{this.owner}}>
                            <input type="hidden" name="titleTask" value={{this.title}}>
-                           <input type="submit" name="toggle-task" style="color: blue" class="toggle-task" value="Complete">
+                           <div class="toggle-task complete-task"><input type="submit" name="toggle-task" style="color: blue" class="toggle-task" value="Complete"></div>
                         </form>
                      </div>
                   {{else}}
