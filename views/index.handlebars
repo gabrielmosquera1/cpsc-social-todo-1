@@ -15,7 +15,12 @@
         {{#if tasks}}
             <ul>
             {{#each tasks}}
-                <div class="tasks-list-item task-card">
+               {{#if this.isComplete}}
+               <div class="tasks-list-item complete-task task-card">
+               {{else}}
+               <div class="tasks-list-item task-card">
+               {{/if}}
+                
                   <span class="tasks-list-desc task-title" >{{this.title}}</span>
                   
                   {{#if isOwner}}
@@ -31,7 +36,6 @@
                         <form action="/task/complete" method="POST">
                            <input type="hidden" name="ownerTask" value={{this.owner}}>
                            <input type="hidden" name="titleTask" value={{this.title}}>
-                           <input type="hidden" name="completeTask" value={{this.isComplete}}>
                            <input type="submit" name="toggle-task" style="color: blue" class="toggle-task" value="Complete">
                         </form>
                      </div>
@@ -39,6 +43,7 @@
                      <form action="/task/complete" method="POST">
                         <input type="hidden" name="ownerTask" value={{this.owner}}>
                         <input type="hidden" name="titleTask" value={{this.title}}>
+                        <input type="hidden" name="completeTask" value={{this.isComplete}}>
                         <input type="submit" name="toggle-task" class="toggle-task" value="Incomplete">
                      </form>
                   {{/if}}
