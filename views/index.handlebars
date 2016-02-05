@@ -13,7 +13,7 @@
         <h4 align="center">Your Tasks</h4>
 
         {{#if tasks}}
-            <ul>
+            {{!--<ul>--}}
             {{#each tasks}}
                 <li class="task-card" class="tasks-list-item" 
                   <span class="task-title">{{this.title}}</span>
@@ -44,7 +44,7 @@
                   {{/if}}
                 </li>
             {{/each}}
-            </ul>
+            {{!--</ul>--}}
         {{else}}
             No tasks to show!
         {{/if}}
