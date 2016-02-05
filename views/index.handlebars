@@ -13,10 +13,10 @@
         <h4 align="center">Your Tasks</h4>
 
         {{#if tasks}}
-            {{!--<ul>--}}
+            <ul>
             {{#each tasks}}
                 <li class="tasks-list-item task-card" 
-                  <span class="tasks-list-desc task-title">{{this.title}}</span>
+                  <span class="tasks-list-desc task-title" >{{this.title}}</span>
                   
                   {{#if isOwner}}
                       <form action="/task/delete" method="POST">
@@ -44,7 +44,7 @@
                   {{/if}}
                 </li>
             {{/each}}
-            {{!--</ul>--}}
+            </ul>
         {{else}}
             <h4 align="center">No tasks to show!</h4>
         {{/if}}
