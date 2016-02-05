@@ -35,7 +35,7 @@
                   
                   {{#if isComplete}}
                      <div class="complete-task">
-                        <form class="complete-task" action="/task/complete" method="POST">
+                        <form action="/task/complete" method="POST">
                            <input type="hidden" name="ownerTask" value={{this.owner}}>
                            <input type="hidden" name="titleTask" value={{this.title}}>
                            <input type="submit" name="toggle-task" style="color: blue" class="toggle-task" value="Complete">
