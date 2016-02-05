@@ -1,20 +1,21 @@
-<h1>Social todo app for cpsc113</h1>
+<h1 align="center">Social todo app for cpsc113</h1>
+<br>
 
 {{#if errors}}
-<div style="color:red" class="validation-error">
+<div align="center" style="color:red" class="validation-error">
     {{errors}}
 </div>
 {{/if}}
 
 {{#if currentUser}}
-    <h2>Welcome, {{currentUser.name}}</h2>
+    <h2 align="center">Welcome, {{currentUser.name}}</h2>
     <div>
-        <h4>Your Tasks</h4>
+        <h4 align="center">Your Tasks</h4>
 
         {{#if tasks}}
             <ul>
             {{#each tasks}}
-                <li class="tasks-list-item">
+                <li class="task-card" class="tasks-list-item" 
                   <span class="task-title">{{this.title}}</span>
                   
                   {{#if isOwner}}
@@ -30,7 +31,7 @@
                         <form action="/task/complete" method="POST">
                            <input type="hidden" name="ownerTask" value={{this.owner}}>
                            <input type="hidden" name="titleTask" value={{this.title}}>
-                           <input type="submit" name="toggle-task" class="toggle-task" value="Completed!">
+                           <input type="submit" name="toggle-task" style="color: blue" class="toggle-task" value="Complete">
                         </form>
                      </div>
                   {{else}}
@@ -38,7 +39,7 @@
                         <input type="hidden" name="ownerTask" value={{this.owner}}>
                         <input type="hidden" name="titleTask" value={{this.title}}>
                         <input type="hidden" name="completeTask" value={{this.isComplete}}>
-                        <input type="submit" name="toggle-task" class="toggle-task" value="Incompleted!">
+                        <input type="submit" name="toggle-task" class="toggle-task" value="Incomplete">
                      </form>
                   {{/if}}
                 </li>
@@ -48,42 +49,49 @@
             No tasks to show!
         {{/if}}
     </div>
-    <hr>
-    <div>
-        <h4>Add a new task</h4>
+
+    <div class="task-card">
+        <h1>Add a new task</h1>
         <form action="/task/create" method="POST">
             <label for="title">Task title</label>
             <input name="title" type="text"><br>
             <label for="description">Task Description</label>
             <input name="description" type="text"><br>
             Collaborators<br>
-            <input name="collaborator1" type="email"><br>
-            <input name="collaborator2" type="email"><br>
-            <input name="collaborator3" type="email"><br>
-            <input type="submit" class="create-task-submit">
+            <input name="collaborator1" type="text"><br>
+            <input name="collaborator2" type="text"><br>
+            <input name="collaborator3" type="text"><br>
+            <input type="submit" class="login login-submit" class="create-task-submit">
         </form>
     </div>
 
 {{else}}
-<div class="login-block">
-    <form class="login" action="/user/login" method="POST">
-        <label for="email">Email</label>
-        <input name="email" id="email" type="text"><br>
-        <label for="password">Password</label>
-        <input name="password"  id="password" type="text"><br>
-        <input type="submit"  class="log-in-submit">
-    </form>
+<div class="login-card">
+   <h1>Log-in</h1>
+   <form action="/user/login" method="POST">
+      <input name="email" id="email" type="text" placeholder="Email"><br>
+      <input name="password"  id="password" type="text" placeholder="Password"><br>
+      <input type="submit" class="login login-submit" class="log-in-submit">
+   </form>
 </div>
 
-<div><hr></div>
+<h1 align="center">Or</h1>
 
-<div>
+
+{{!--<div><hr></div>--}}
+
+
+<div class="login-card">
+   <h1>Register</h1>
     <form class="register" action="/user/register" method="POST" class="signup-form" style="display: block;">
       <input name="fl_name" type="text" class="text-input" placeholder="first &amp; last name">
-      <input name="email" type="email" class="text-input" placeholder="email">
+      <input name="email" type="text" class="text-input" placeholder="email">
       <input name="password" type="password" class="text-input" placeholder="password">
       <input name="password_confirmation" type="password" class="text-input" placeholder="password confirmation">
-      <input class="sign-up-submit" type="submit">
+      <input class="login login-submit" class="sign-up-submit" type="submit">
     </form>
 </div>
 {{/if}}
+
+    
+    
