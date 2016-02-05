@@ -15,7 +15,14 @@
         {{#if tasks}}
             <ul>
             {{#each tasks}}
-                <li class="tasks-list-item task-card">
+            
+            {{#if is.Complete}}
+               <li class="tasks-list-item task-card complete-task">
+            {{else}}
+               <li class="tasks-list-item task-card">
+            {{/if}}
+            
+                
                   <span class="tasks-list-desc task-title" >{{this.title}}</span>
                   
                   {{#if isOwner}}
