@@ -196,7 +196,7 @@ app.post('/task/complete', function(req, res){
       console.log('era true!');
     }  
     console.log('mudou para ' + newVal);
-  Tasks.update({_id: req.body.taskId}, {isComplete: newVal}, function(err, ans){
+  Tasks.update({_id: req.body.taskId}, {$set: {isComplete: newVal}}, function(err, ans){
     if(err){
       res.render('/', {errors: "Could not update task!"});
     }else{
