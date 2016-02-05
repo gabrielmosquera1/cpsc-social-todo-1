@@ -31,7 +31,7 @@
                       </form>
                   {{/if}}
                   
-                  {{#if isComplete}}
+                  {{#if this.isComplete}}
                      <div class="complete-task">
                         <form action="/task/complete" method="POST">
                            <input type="hidden" name="ownerTask" value={{this.owner}}>
